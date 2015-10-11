@@ -129,7 +129,6 @@ namespace MonoLine
                     afterOp = true;
                     foundOp = true;
                     if (op.FindWhole(exp, i)) i += op.opStr.Length - 1;
-                    break;
                 }
                 if (!foundOp) afterOp = false;
             }
