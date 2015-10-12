@@ -116,7 +116,7 @@
             this.information.Name = "information";
             this.information.Size = new System.Drawing.Size(194, 17);
             this.information.TabIndex = 2;
-            this.information.Text = "V2.7β by Iodizon  Copyleft 2015";
+            this.information.Text = "V2.9β by Iodizon  Copyleft 2015";
             // 
             // panelDrag
             // 
@@ -194,6 +194,7 @@
             this.buttonBin.TabIndex = 7;
             this.buttonBin.Text = "Bin";
             this.buttonBin.UseVisualStyleBackColor = false;
+            this.buttonBin.Click += new System.EventHandler(this.buttonBin_Click);
             // 
             // buttonOct
             // 
@@ -208,13 +209,14 @@
             this.buttonOct.TabIndex = 8;
             this.buttonOct.Text = "Oct";
             this.buttonOct.UseVisualStyleBackColor = false;
+            this.buttonOct.Click += new System.EventHandler(this.buttonOct_Click);
             // 
             // buttonDec
             // 
-            this.buttonDec.BackColor = System.Drawing.Color.RoyalBlue;
+            this.buttonDec.BackColor = System.Drawing.Color.CornflowerBlue;
             this.buttonDec.FlatAppearance.BorderSize = 0;
             this.buttonDec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDec.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonDec.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonDec.ForeColor = System.Drawing.Color.White;
             this.buttonDec.Location = new System.Drawing.Point(181, 160);
             this.buttonDec.Name = "buttonDec";
@@ -222,6 +224,7 @@
             this.buttonDec.TabIndex = 9;
             this.buttonDec.Text = "Dec";
             this.buttonDec.UseVisualStyleBackColor = false;
+            this.buttonDec.Click += new System.EventHandler(this.buttonDec_Click);
             // 
             // buttonHex
             // 
@@ -236,6 +239,7 @@
             this.buttonHex.TabIndex = 10;
             this.buttonHex.Text = "Hex";
             this.buttonHex.UseVisualStyleBackColor = false;
+            this.buttonHex.Click += new System.EventHandler(this.buttonHex_Click);
             // 
             // buttonSqrt
             // 
@@ -499,6 +503,7 @@
             this.textBoxM1.Name = "textBoxM1";
             this.textBoxM1.Size = new System.Drawing.Size(180, 23);
             this.textBoxM1.TabIndex = 28;
+            this.textBoxM1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxM1_KeyDown);
             // 
             // textBoxM2
             // 
@@ -507,6 +512,7 @@
             this.textBoxM2.Name = "textBoxM2";
             this.textBoxM2.Size = new System.Drawing.Size(180, 23);
             this.textBoxM2.TabIndex = 29;
+            this.textBoxM2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxM2_KeyDown);
             // 
             // textBoxM3
             // 
@@ -515,6 +521,7 @@
             this.textBoxM3.Name = "textBoxM3";
             this.textBoxM3.Size = new System.Drawing.Size(180, 23);
             this.textBoxM3.TabIndex = 30;
+            this.textBoxM3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxM3_KeyDown);
             // 
             // textBoxM4
             // 
@@ -523,6 +530,7 @@
             this.textBoxM4.Name = "textBoxM4";
             this.textBoxM4.Size = new System.Drawing.Size(180, 23);
             this.textBoxM4.TabIndex = 31;
+            this.textBoxM4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxM4_KeyDown);
             // 
             // buttonIm4
             // 

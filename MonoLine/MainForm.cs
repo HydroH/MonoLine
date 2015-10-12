@@ -179,7 +179,12 @@ namespace MonoLine
             textBox.Focus();
         }
 
+        //历史纪录初始化
         Backlog textLog = new Backlog();
+        Backlog m1Log = new Backlog();
+        Backlog m2Log = new Backlog();
+        Backlog m3Log = new Backlog();
+        Backlog m4Log = new Backlog();
         private void buttonEvaluate_Click(object sender, EventArgs e)
         {
             textLog.AddLog(textBox.Text);
@@ -217,6 +222,7 @@ namespace MonoLine
             textBox.Focus();
         }
 
+        //历史纪录
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -234,6 +240,67 @@ namespace MonoLine
             {
                 textBox.Text = textLog.ForwardLog(textBox.Text);
                 textBox.SelectionStart = textBox.TextLength;
+                e.SuppressKeyPress = true;
+            }
+        }
+        //M1-4历史纪录
+        private void textBoxM1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxM1.Text = m1Log.ReturnLog(textBoxM1.Text);
+                textBoxM1.SelectionStart = textBoxM1.TextLength;
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                textBoxM1.Text = m1Log.ForwardLog(textBoxM1.Text);
+                textBoxM1.SelectionStart = textBoxM1.TextLength;
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void textBoxM2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxM2.Text = m2Log.ReturnLog(textBoxM2.Text);
+                textBoxM2.SelectionStart = textBoxM2.TextLength;
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                textBoxM2.Text = m2Log.ForwardLog(textBoxM2.Text);
+                textBoxM2.SelectionStart = textBoxM2.TextLength;
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void textBoxM3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxM3.Text = m3Log.ReturnLog(textBoxM3.Text);
+                textBoxM3.SelectionStart = textBoxM3.TextLength;
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                textBoxM3.Text = m3Log.ForwardLog(textBoxM3.Text);
+                textBoxM3.SelectionStart = textBoxM3.TextLength;
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void textBoxM4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxM4.Text = m4Log.ReturnLog(textBoxM4.Text);
+                textBoxM4.SelectionStart = textBoxM4.TextLength;
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                textBoxM4.Text = m4Log.ForwardLog(textBoxM4.Text);
+                textBoxM4.SelectionStart = textBoxM4.TextLength;
                 e.SuppressKeyPress = true;
             }
         }
@@ -357,37 +424,132 @@ namespace MonoLine
         //M1-4
         private void buttonIm1_Click(object sender, EventArgs e)
         {
+            m1Log.AddLog(textBoxM1.Text);
             textBoxM1.Text = textBox.Text;
+            m1Log.AddLog(textBoxM1.Text);
         }
         private void buttonIm2_Click(object sender, EventArgs e)
         {
+            m2Log.AddLog(textBoxM2.Text);
             textBoxM2.Text = textBox.Text;
+            m2Log.AddLog(textBoxM2.Text);
         }
         private void buttonIm3_Click(object sender, EventArgs e)
         {
+            m3Log.AddLog(textBoxM3.Text);
             textBoxM3.Text = textBox.Text;
+            m3Log.AddLog(textBoxM3.Text);
         }
         private void buttonIm4_Click(object sender, EventArgs e)
         {
+            m4Log.AddLog(textBoxM4.Text);
             textBoxM4.Text = textBox.Text;
+            m4Log.AddLog(textBoxM4.Text);
         }
 
         private void buttonM1_Click(object sender, EventArgs e)
         {
+            m1Log.AddLog(textBoxM1.Text);
             InsertConst("M1");
         }
         private void buttonM2_Click(object sender, EventArgs e)
         {
+            m2Log.AddLog(textBoxM2.Text);
             InsertConst("M2");
         }
         private void buttonM3_Click(object sender, EventArgs e)
         {
+            m3Log.AddLog(textBoxM3.Text);
             InsertConst("M3");
         }
         private void buttonM4_Click(object sender, EventArgs e)
         {
+            m4Log.AddLog(textBoxM4.Text);
             InsertConst("M4");
         }
-        
+
+        //进制转换
+        int currentBase = 10;
+        private void baseDisplay()
+        {
+            switch (currentBase)
+            {
+                case 2:
+                    buttonBin.BackColor = Color.RoyalBlue;
+                    buttonBin.Font = new Font(buttonBin.Font, buttonBin.Font.Style | FontStyle.Regular);
+                    break;
+                case 8:
+                    buttonOct.BackColor = Color.RoyalBlue;
+                    buttonOct.Font = new Font(buttonOct.Font, buttonOct.Font.Style | FontStyle.Regular);
+                    break;
+                case 10:
+                    buttonDec.BackColor = Color.RoyalBlue;
+                    buttonDec.Font = new Font(buttonDec.Font, buttonDec.Font.Style | FontStyle.Regular);
+                    break;
+                case 16:
+                    buttonHex.BackColor = Color.RoyalBlue;
+                    buttonHex.Font = new Font(buttonHex.Font, buttonHex.Font.Style | FontStyle.Regular);
+                    break;
+            }
+        }
+
+        private void baseConvert(int targetBase)
+        {
+            if (currentBase == targetBase) return;
+            try
+            {
+                long textValue = Convert.ToInt64(textBox.Text, currentBase);
+                baseDisplay();
+                currentBase = targetBase;
+                textLog.AddLog(textBox.Text);
+                textBox.Text = Convert.ToString(textValue, currentBase);
+                textLog.AddLog(textBox.Text);
+                switch (currentBase)
+                {
+                    case 2:
+                        buttonBin.BackColor = Color.CornflowerBlue;
+                        buttonBin.Font = new Font(buttonBin.Font, buttonBin.Font.Style | FontStyle.Bold);
+                        buttonEvaluate.Enabled = false;
+                        break;
+                    case 8:
+                        buttonOct.BackColor = Color.CornflowerBlue;
+                        buttonOct.Font = new Font(buttonOct.Font, buttonOct.Font.Style | FontStyle.Bold);
+                        buttonEvaluate.Enabled = false;
+                        break;
+                    case 10:
+                        buttonDec.BackColor = Color.CornflowerBlue;
+                        buttonDec.Font = new Font(buttonDec.Font, buttonDec.Font.Style | FontStyle.Bold);
+                        buttonEvaluate.Enabled = true;
+                        break;
+                    case 16:
+                        buttonHex.BackColor = Color.CornflowerBlue;
+                        buttonHex.Font = new Font(buttonHex.Font, buttonHex.Font.Style | FontStyle.Bold);
+                        buttonEvaluate.Enabled = false;
+                        break;
+                }
+                textBox.Text = textBox.Text.ToUpper();
+            }
+            catch
+            {
+                messageLabel.Text = "无法进行进制转换";
+            }
+        }
+
+        private void buttonBin_Click(object sender, EventArgs e)
+        {
+            baseConvert(2);
+        }
+        private void buttonOct_Click(object sender, EventArgs e)
+        {
+            baseConvert(8);
+        }
+        private void buttonDec_Click(object sender, EventArgs e)
+        {
+            baseConvert(10);
+        }
+        private void buttonHex_Click(object sender, EventArgs e)
+        {
+            baseConvert(16);
+        }
     }
 }
