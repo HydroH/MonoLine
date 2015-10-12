@@ -53,11 +53,8 @@ namespace MonoLine
         Point[] expandButton;
         private void InitPaintParam()
         {
-            if (null != ActiveForm)
-            {
-                formWidth = ActiveForm.Width;
-                formHeight = ActiveForm.Height;
-            }
+            formWidth = panelDrag.Parent.Width;
+            formHeight = panelDrag.Parent.Height;
             frame = new Point[]
             {
                 new Point(1, 1),
@@ -184,25 +181,26 @@ namespace MonoLine
             Expression textExp = new Expression();
             Expression mExp = new Expression();
             textExp.MInit(mExp.Evaluate(textBoxM1.Text), 1);
-            if ((mExp.errorMessage != "") || (textBoxM1.Text == "")) 
+            string rawExp = textBox.Text.ToLower();
+            if ((mExp.errorMessage != "") && (rawExp.IndexOf("m1") >= 0)) 
             {
                 messageLabel.Text = "错误：M1表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM2.Text), 2);
-            if ((mExp.errorMessage != "") || (textBoxM2.Text == ""))
+            if ((mExp.errorMessage != "") && (rawExp.IndexOf("m2") >= 0))
             {
                 messageLabel.Text = "错误：M2表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM3.Text), 3);
-            if ((mExp.errorMessage != "") || (textBoxM3.Text == ""))
+            if ((mExp.errorMessage != "") && (rawExp.IndexOf("m3") >= 0))
             {
                 messageLabel.Text = "错误：M3表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM4.Text), 4);
-            if ((mExp.errorMessage != "") || (textBoxM4.Text == ""))
+            if ((mExp.errorMessage != "") && (rawExp.IndexOf("m4") >= 0))
             {
                 messageLabel.Text = "错误：M4表达式无效";
                 return;
@@ -211,6 +209,7 @@ namespace MonoLine
             messageLabel.Text = textExp.errorMessage;
             textBox.SelectionStart = textBox.TextLength;
             textLog.AddLog(textBox.Text);
+            textBox.Focus();
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
@@ -252,26 +251,26 @@ namespace MonoLine
             {
                 for (int i = 0; i <= (290 - 155) / (buttonLength - 3); i++)
                 {
-                    ActiveForm.Height -= buttonLength - 3;
+                    panelDrag.Parent.Height -= buttonLength - 3;
                     buttonExpand.Refresh();
                 }
                 messageLabel.Location = new Point(messageLabel.Location.X, messageLabel.Location.Y - 3);
-                ActiveForm.Height = 155;
+                panelDrag.Parent.Height = 155;
                 buttonExpand.Refresh();
-                ActiveForm.Invalidate();
+                panelDrag.Parent.Invalidate();
                 expanded = false;
             }
             else
             {
                 for (int i = 0; i <= (290 - 155) / (buttonLength - 3); i++) 
                 {
-                    ActiveForm.Height += buttonLength - 3;
+                    panelDrag.Parent.Height += buttonLength - 3;
                     buttonExpand.Refresh();
                 }
                 messageLabel.Location = new Point(messageLabel.Location.X, messageLabel.Location.Y + 3);
-                ActiveForm.Height = 290;
+                panelDrag.Parent.Height = 290;
                 buttonExpand.Refresh();
-                ActiveForm.Invalidate();
+                panelDrag.Parent.Invalidate();
                 expanded = true;
             }
         }

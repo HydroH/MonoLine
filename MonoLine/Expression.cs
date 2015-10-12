@@ -9,7 +9,8 @@ namespace MonoLine
         private string[] M = new string[5];
         public void MInit(string Mn, int i)
         {
-            M[i] = Mn;
+            if (Mn == "") M[i] = "0";
+            else M[i] = Mn;
         }
 
         //初始化
