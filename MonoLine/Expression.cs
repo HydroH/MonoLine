@@ -5,6 +5,13 @@ namespace MonoLine
 {
     class Expression
     {
+        //M1-4初始化
+        private string[] M = new string[5];
+        public void MInit(string Mn, int i)
+        {
+            M[i] = Mn;
+        }
+
         //初始化
         private void ExpInit(ref string exp)
         {
@@ -110,6 +117,18 @@ namespace MonoLine
                         case "pi":
                         case "π":
                             exp = exp.Insert(i, Convert.ToString(Math.PI));
+                            break;
+                        case "m1":
+                            exp = exp.Insert(i, M[1]);
+                            break;
+                        case "m2":
+                            exp = exp.Insert(i, M[2]);
+                            break;
+                        case "m3":
+                            exp = exp.Insert(i, M[3]);
+                            break;
+                        case "m4":
+                            exp = exp.Insert(i, M[4]);
                             break;
                     }
                 }
