@@ -116,7 +116,7 @@
             this.information.Name = "information";
             this.information.Size = new System.Drawing.Size(194, 17);
             this.information.TabIndex = 2;
-            this.information.Text = "V2.9β by Iodizon  Copyleft 2015";
+            this.information.Text = "V2.8β by Iodizon  Copyleft 2015";
             // 
             // panelDrag
             // 

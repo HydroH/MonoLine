@@ -476,19 +476,19 @@ namespace MonoLine
             {
                 case 2:
                     buttonBin.BackColor = Color.RoyalBlue;
-                    buttonBin.Font = new Font(buttonBin.Font, buttonBin.Font.Style | FontStyle.Regular);
+                    buttonBin.Font = new Font(buttonBin.Font, FontStyle.Regular);
                     break;
                 case 8:
                     buttonOct.BackColor = Color.RoyalBlue;
-                    buttonOct.Font = new Font(buttonOct.Font, buttonOct.Font.Style | FontStyle.Regular);
+                    buttonOct.Font = new Font(buttonOct.Font, FontStyle.Regular);
                     break;
                 case 10:
                     buttonDec.BackColor = Color.RoyalBlue;
-                    buttonDec.Font = new Font(buttonDec.Font, buttonDec.Font.Style | FontStyle.Regular);
+                    buttonDec.Font = new Font(buttonDec.Font, FontStyle.Regular);
                     break;
                 case 16:
                     buttonHex.BackColor = Color.RoyalBlue;
-                    buttonHex.Font = new Font(buttonHex.Font, buttonHex.Font.Style | FontStyle.Regular);
+                    buttonHex.Font = new Font(buttonHex.Font, FontStyle.Regular);
                     break;
             }
         }
@@ -498,12 +498,20 @@ namespace MonoLine
             if (currentBase == targetBase) return;
             try
             {
-                long textValue = Convert.ToInt64(textBox.Text, currentBase);
-                baseDisplay();
-                currentBase = targetBase;
-                textLog.AddLog(textBox.Text);
-                textBox.Text = Convert.ToString(textValue, currentBase);
-                textLog.AddLog(textBox.Text);
+                if (textBox.Text != "")
+                {
+                    long textValue = Convert.ToInt64(textBox.Text, currentBase);
+                    baseDisplay();
+                    currentBase = targetBase;
+                    textLog.AddLog(textBox.Text);
+                    textBox.Text = Convert.ToString(textValue, currentBase);
+                    textLog.AddLog(textBox.Text);
+                }
+                else
+                {
+                    baseDisplay();
+                    currentBase = targetBase;
+                }
                 switch (currentBase)
                 {
                     case 2:
