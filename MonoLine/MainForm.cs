@@ -184,27 +184,27 @@ namespace MonoLine
             Expression textExp = new Expression();
             Expression mExp = new Expression();
             textExp.MInit(mExp.Evaluate(textBoxM1.Text), 1);
-            if (mExp.errorMessage != "")
+            if ((mExp.errorMessage != "") || (textBoxM1.Text == "")) 
             {
-                messageLabel.Text = "M1表达式有误！";
+                messageLabel.Text = "错误：M1表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM2.Text), 2);
-            if (mExp.errorMessage != "")
+            if ((mExp.errorMessage != "") || (textBoxM2.Text == ""))
             {
-                messageLabel.Text = "M2表达式有误！";
+                messageLabel.Text = "错误：M2表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM3.Text), 3);
-            if (mExp.errorMessage != "")
+            if ((mExp.errorMessage != "") || (textBoxM3.Text == ""))
             {
-                messageLabel.Text = "M3表达式有误！";
+                messageLabel.Text = "错误：M3表达式无效";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM4.Text), 4);
-            if (mExp.errorMessage != "")
+            if ((mExp.errorMessage != "") || (textBoxM4.Text == ""))
             {
-                messageLabel.Text = "M4表达式有误！";
+                messageLabel.Text = "错误：M4表达式无效";
                 return;
             }
             textBox.Text = textExp.Evaluate(textBox.Text);
