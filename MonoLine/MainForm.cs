@@ -33,6 +33,11 @@ namespace MonoLine
                 return cp;
             }
         }
+        //最小化/还原时重绘
+        protected override void OnResize(EventArgs e)
+        {
+            if (null != panelDrag.Parent) panelDrag.Parent.Invalidate();
+        }
 
         //GDI+ 绘制标题栏、按钮
 
@@ -257,7 +262,6 @@ namespace MonoLine
                 messageLabel.Location = new Point(messageLabel.Location.X, messageLabel.Location.Y - 3);
                 panelDrag.Parent.Height = 155;
                 buttonExpand.Refresh();
-                panelDrag.Parent.Invalidate();
                 expanded = false;
             }
             else
@@ -270,7 +274,6 @@ namespace MonoLine
                 messageLabel.Location = new Point(messageLabel.Location.X, messageLabel.Location.Y + 3);
                 panelDrag.Parent.Height = 290;
                 buttonExpand.Refresh();
-                panelDrag.Parent.Invalidate();
                 expanded = true;
             }
         }
@@ -385,5 +388,6 @@ namespace MonoLine
         {
             InsertConst("M4");
         }
+        
     }
 }
