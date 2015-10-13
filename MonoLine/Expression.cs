@@ -269,7 +269,7 @@ namespace MonoLine
             }
             catch
             {
-                errorMessage = "错误：表达式无效";
+                errorMessage = "Error: Invalid Expression";
                 postExp = rawExp;
             }
             return postExp;

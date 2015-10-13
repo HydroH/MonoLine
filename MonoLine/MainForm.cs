@@ -194,25 +194,25 @@ namespace MonoLine
             string rawExp = textBox.Text.ToLower();
             if ((mExp.errorMessage != "") && (rawExp.IndexOf("m1") >= 0)) 
             {
-                messageLabel.Text = "错误：M1表达式无效";
+                messageLabel.Text = "Error: Invalid M1 Expression";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM2.Text), 2);
             if ((mExp.errorMessage != "") && (rawExp.IndexOf("m2") >= 0))
             {
-                messageLabel.Text = "错误：M2表达式无效";
+                messageLabel.Text = "Error: Invalid M2 Expression";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM3.Text), 3);
             if ((mExp.errorMessage != "") && (rawExp.IndexOf("m3") >= 0))
             {
-                messageLabel.Text = "错误：M3表达式无效";
+                messageLabel.Text = "Error: Invalid M3 Expression";
                 return;
             }
             textExp.MInit(mExp.Evaluate(textBoxM4.Text), 4);
             if ((mExp.errorMessage != "") && (rawExp.IndexOf("m4") >= 0))
             {
-                messageLabel.Text = "错误：M4表达式无效";
+                messageLabel.Text = "Error: Invalid M4 Expression";
                 return;
             }
             textBox.Text = textExp.Evaluate(textBox.Text);
@@ -518,28 +518,32 @@ namespace MonoLine
                         buttonBin.BackColor = Color.CornflowerBlue;
                         buttonBin.Font = new Font(buttonBin.Font, buttonBin.Font.Style | FontStyle.Bold);
                         buttonEvaluate.Enabled = false;
+                        buttonEvaluate.BackColor = Color.CornflowerBlue;
                         break;
                     case 8:
                         buttonOct.BackColor = Color.CornflowerBlue;
                         buttonOct.Font = new Font(buttonOct.Font, buttonOct.Font.Style | FontStyle.Bold);
                         buttonEvaluate.Enabled = false;
+                        buttonEvaluate.BackColor = Color.CornflowerBlue;
                         break;
                     case 10:
                         buttonDec.BackColor = Color.CornflowerBlue;
                         buttonDec.Font = new Font(buttonDec.Font, buttonDec.Font.Style | FontStyle.Bold);
                         buttonEvaluate.Enabled = true;
+                        buttonEvaluate.BackColor = Color.RoyalBlue;
                         break;
                     case 16:
                         buttonHex.BackColor = Color.CornflowerBlue;
                         buttonHex.Font = new Font(buttonHex.Font, buttonHex.Font.Style | FontStyle.Bold);
                         buttonEvaluate.Enabled = false;
+                        buttonEvaluate.BackColor = Color.CornflowerBlue;
                         break;
                 }
                 textBox.Text = textBox.Text.ToUpper();
             }
             catch
             {
-                messageLabel.Text = "无法进行进制转换";
+                messageLabel.Text = "Error: Base Convertion Failed";
             }
         }
 
