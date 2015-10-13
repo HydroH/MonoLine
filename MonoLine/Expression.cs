@@ -18,9 +18,6 @@ namespace MonoLine
         {
             Operator op = new Operator();
 
-            //小写化
-            exp = exp.ToLower();
-
             //全/半角&中/英文
             exp = exp.Replace('（', '(');
             exp = exp.Replace('）', ')');
@@ -259,8 +256,11 @@ namespace MonoLine
         {
             errorMessage = "";
             if (rawExp == "") return "";
-            string exp = rawExp;
+            string exp = rawExp.ToLower();
             string postExp;
+            //Easter Egg :P
+            if ((exp.IndexOf("life") >= 0) && (exp.IndexOf("universe") >= 0) && (exp.IndexOf("everything") >= 0))
+                return "42";
             try
             {
                 ExpInit(ref exp);
